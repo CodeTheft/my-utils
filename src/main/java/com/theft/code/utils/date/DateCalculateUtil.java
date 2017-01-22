@@ -3,7 +3,7 @@ package com.theft.code.utils.date;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateCalculateUtils {
+public class DateCalculateUtil {
 
 	/**
 	 * 中国星期类型，周一是第一天

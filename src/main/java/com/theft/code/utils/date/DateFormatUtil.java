@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.theft.code.utils.string.StringUtils;
+import com.theft.code.utils.string.StringUtil;
 
 public class DateFormatUtil {
 
@@ -17,7 +17,7 @@ public class DateFormatUtil {
 	 * @return
 	 */
 	public static String formatDate2String(Date date, String pattern) {
-		pattern = StringUtils.strIsNull(pattern) ? pattern : DEFAULT_DATE_FORMAT_STRING_PATTERN;
+		pattern = StringUtil.strIsNull(pattern) ? DEFAULT_DATE_FORMAT_STRING_PATTERN : pattern;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		return simpleDateFormat.format(date);
 	}
@@ -30,7 +30,7 @@ public class DateFormatUtil {
 	 * @throws ParseException
 	 */
 	public static Date formatString2Date(String s_date, String pattern) throws ParseException {
-		pattern = StringUtils.strIsNull(pattern) ? pattern : DEFAULT_DATE_FORMAT_STRING_PATTERN;
+		pattern = StringUtil.strIsNull(pattern) ? DEFAULT_DATE_FORMAT_STRING_PATTERN : pattern;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		return simpleDateFormat.parse(s_date);
 	}
@@ -42,7 +42,7 @@ public class DateFormatUtil {
 	 * @return
 	 */
 	public static String formatTimestamp2String(long timestamp, String pattern) {
-		pattern = StringUtils.strIsNull(pattern) ? pattern : DEFAULT_DATE_FORMAT_STRING_PATTERN;
+		pattern = StringUtil.strIsNull(pattern) ? DEFAULT_DATE_FORMAT_STRING_PATTERN : pattern;
 		return formatDate2String(new Date(timestamp), pattern);
 	}
 	

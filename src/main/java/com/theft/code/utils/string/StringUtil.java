@@ -1,6 +1,6 @@
 package com.theft.code.utils.string;
 
-public class StringUtils {
+public class StringUtil {
 
 	/**
 	 * 判断字符串是否为空
