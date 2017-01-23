@@ -6,6 +6,11 @@ import java.util.Date;
 
 import com.theft.code.utils.string.StringUtil;
 
+/**
+ * 日期格式转换工具类
+ * @author chufei
+ * @date 2017年1月22日
+ */
 public class DateFormatUtil {
 
 	public static final String DEFAULT_DATE_FORMAT_STRING_PATTERN = "yyyy-MM-dd";

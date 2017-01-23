@@ -1,5 +1,10 @@
 package com.theft.code.utils.string;
 
+/**
+ * 字符串工具类
+ * @author chufei
+ * @date 2017年1月22日
+ */
 public class StringUtil {
 
 	/**

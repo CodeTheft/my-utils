@@ -3,6 +3,11 @@ package com.theft.code.utils.date;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * 日期时间计算工具类
+ * @author chufei
+ * @date 2017年1月22日
+ */
 public class DateCalculateUtil {
 
 	/**

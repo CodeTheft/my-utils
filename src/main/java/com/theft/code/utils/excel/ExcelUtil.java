@@ -14,6 +14,12 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import com.theft.code.utils.date.DateFormatUtil;
 
+/**
+ * excel工具类
+ * @author chufei
+ * @date 2017年1月22日
+ * @param <T> 泛型
+ */
 public class ExcelUtil<T> {
 
 	private String pattern = "yyyy-MM-dd";
