@@ -11,8 +11,19 @@ import com.theft.code.utils.string.StringUtil;
  */
 public class EncryptUtil {
 
+	/**
+	 * 被加密字符串
+	 */
 	private String inputText = "";
+	
+	/**
+	 * 加盐
+	 */
 	private String salt = "";
+	
+	/**
+	 * 加密方式，MD5或SHA1
+	 */
 	private String algorithm = "MD5";
 
 	public EncryptUtil() {}
@@ -25,9 +36,6 @@ public class EncryptUtil {
 	
 	/**
 	 * 加盐字符串加密
-	 * @param inputText 被加密字符串
-	 * @param salt 盐, 不加盐为null
-	 * @return 
 	 * @throws Exception 
 	 */
 	public String encodeBySalt() throws Exception {
