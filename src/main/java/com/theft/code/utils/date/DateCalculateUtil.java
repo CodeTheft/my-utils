@@ -100,4 +100,37 @@ public class DateCalculateUtil {
 		return weekType == WEEK_TYPE_CN ? addDays(dayOfWeek, Calendar.DATE, 1) : dayOfWeek;
 	}
 	
+	/**
+	 * 获取某天在几几年
+	 * @param date 指定日期
+	 * @return
+	 */
+	public static int getCurrentYear(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return calendar.get(Calendar.YEAR);
+	}
+	
+	/**
+	 * 获取某天在几月
+	 * @param date 指定日期
+	 * @return
+	 */	
+	public static int getCurrentMonth(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return calendar.get(Calendar.MONTH) + 1;
+	}
+
+	/**
+	 * 获取某天在该月第几天
+	 * @param date 指定日期
+	 * @return
+	 */	
+	public static int getDayOfMonth(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return calendar.get(Calendar.DAY_OF_MONTH);
+	}
+	
 }
