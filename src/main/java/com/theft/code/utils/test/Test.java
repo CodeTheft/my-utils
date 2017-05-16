@@ -19,7 +19,7 @@ public class Test {
 		
 		EncryptUtil eu = new EncryptUtil("123456", null, null);
 		System.out.println(eu.encodeBySalt());
-		System.out.println("ec9911a53dc9a443918b39656fa9518a".equals(eu.encodeBySalt()));
+		System.out.println("e10adc3949ba59abbe56e057f20f883e".equals(eu.encodeBySalt()));
 		
 		System.out.println(Base64Util.encode("123456"));
 		System.out.println(Base64Util.decode("MTIzNDU2"));

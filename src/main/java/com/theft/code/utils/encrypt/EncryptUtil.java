@@ -1,5 +1,6 @@
 package com.theft.code.utils.encrypt;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -67,9 +68,12 @@ public class EncryptUtil {
 		try {
 			digest = MessageDigest.getInstance(algorithm);
 			digest.update(inputText.getBytes());
-			byte[] buffers = digest.digest();
+			
+			// 2017/5/16 update
+			return new BigInteger(1, digest.digest()).toString(16);
 			
 			// 将16为字节数组转换成32为字符串
+			/* byte[] buffers = digest.digest();
 			StringBuffer sb = new StringBuffer();
 			for (int i = 0; i < buffers.length; i++) {
 				// 补位为16进制
@@ -79,7 +83,7 @@ public class EncryptUtil {
 				}
 				sb.append(hs);
 			}
-			return sb.toString();
+			return sb.toString();*/
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return null;
