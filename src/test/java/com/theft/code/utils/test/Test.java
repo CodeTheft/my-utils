@@ -1,8 +1,5 @@
 package com.theft.code.utils.test;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,16 +31,16 @@ public class Test {
 		System.out.println(DateCalculateUtil.getCurrentMonth(new Date()));
 		System.out.println(DateCalculateUtil.getDayOfMonth(new Date()));
 		
-//		Map<String, String> params = new HashMap<String, String>();
-//		params.put("momentId", "1");
-//		params.put("password", "111111");
-//		params.put("userId", "100");
-//		params.put("content", "反反复复");
-//		params.put("isDisplay", "1");
-//		params.put("addType", "1");
-//		params.put("addIndexs", "1,2,3");
-//		params.put("addUrls", "fdf单独df,12单独3123,4恩恩4444");
-//		System.out.println(HttpToolKit.doPost("http://localhost:8080/login", params, "UTF-8"));
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("momentId", "1");
+		params.put("password", "123456");
+		params.put("userId", "1");
+		params.put("content", "反反复复");
+		params.put("isDisplay", "1");
+		params.put("addType", "1");
+		params.put("addIndexs", "1,2,3");
+		params.put("addUrls", "fdf单独df,12单独3123,4恩恩4444");
+		System.out.println(HttpToolKit.doPost("http://localhost:8080/login", params, "UTF-8"));
 	}
 	
 }
