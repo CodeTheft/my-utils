@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +21,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import com.theft.code.utils.string.StringUtil;
+
 /**
  * HttpClient模拟请求HttpGet和HttpPost
  * 
@@ -37,7 +38,7 @@ public class HttpToolKit {
 	 * @param charset 请求编码
 	 * @return 返回请求体
 	 */
-	public static String doGet(String uri, Map<String, String> params, String charset) {
+	public static String doGet(String uri, Map<String, String> params, String userAgent, String charset) {
 		CloseableHttpClient client = HttpClients.createDefault();
 		StringBuffer queryString = new StringBuffer();
 		if (params != null && !params.isEmpty()) {
@@ -55,6 +56,10 @@ public class HttpToolKit {
 		}
 		uri = uri + queryString.toString();
 		HttpGet get = new HttpGet(uri);
+		
+		if (!StringUtil.strIsNull(userAgent)) {
+			get.setHeader("User-Agent", userAgent);
+		}
 		
 		try {
 			CloseableHttpResponse response = client.execute(get);
@@ -88,9 +93,14 @@ public class HttpToolKit {
 	 * @param charset 请求编码
 	 * @return 返回请求体
 	 */
-	public static String doPost(String uri, Map<String, String> params, String charset) {
+	public static String doPost(String uri, Map<String, String> params, String userAgent, String charset) {
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpPost post = new HttpPost(uri);
+		
+		if (!StringUtil.strIsNull(userAgent)) {
+			post.setHeader("User-Agent", userAgent);
+		}
+		
 		List<NameValuePair> paramList = new ArrayList<NameValuePair>();
 		if (params != null && !params.isEmpty()) {
 			for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -132,21 +142,6 @@ public class HttpToolKit {
 			}
 		}
 		return "";
-	}
-	
-	public static void main(String[] args) {
-//		String url = "http://192.168.16.174:8833/jellyfish-server/internal/diffdimension/contract/add.htm";
-//		HashMap<String, String> params = new HashMap<String, String>();
-//		params.put("contractId", "2");
-//		params.put("minLivedays", "1");
-//		params.put("recDuration", "1");
-//      params.put("allRank", "-1");
-//		String result = doPost(url, params, "UTF-8");
-		String url = "http://192.168.16.174:8833/jellyfish-server/api/so/smart-guess.htm";
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("keyword", "王");
-		String result = doGet(url, params, "UTF-8");
-		System.out.println(result);
 	}
 	
 }
