@@ -62,6 +62,11 @@ public class LocalCacheHelper {
 		if (value == null) {
 			throw new IllegalArgumentException("Couldn't set null to Local Cache!");
 		}
+
+		if (expireTime == null) {
+			throw new IllegalArgumentException("Parameter expireTime couldn't null!");
+		}
+		
 		MAP.put(key, value);
 		TIMER.schedule(new CleanCacheTask(key), expireTime);
 	}
