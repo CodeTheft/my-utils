@@ -19,13 +19,13 @@ public class Base64Util {
 	 * @param inputText 被加密字符串
 	 * @return
 	 */
-	public static String encode(String inputText) {
+	public static String encode(String inputText, String charset) {
 		if (StringUtil.strIsNull(inputText)) {
 			return null;
 		}
 		
 		try {
-			return Base64.encodeBase64String(inputText.getBytes("UTF-8"));
+			return Base64.encodeBase64String(inputText.getBytes(charset));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return null;
@@ -37,13 +37,13 @@ public class Base64Util {
 	 * @param outputText 被解密字符串
 	 * @return
 	 */
-	public static String decode(String outputText) {
+	public static String decode(String outputText, String charset) {
 		if (StringUtil.strIsNull(outputText)) {
 			return null;
 		}
 		
 		try {
-			return new String(Base64.decodeBase64(outputText), "UTF-8");
+			return new String(Base64.decodeBase64(outputText), charset);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return null;

@@ -1,4 +1,4 @@
-package com.theft.code.localcache;
+package com.theft.code.cache.localcache;
 
 import java.util.Date;
 import java.util.Map;
