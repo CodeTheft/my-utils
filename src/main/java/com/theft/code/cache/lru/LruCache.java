@@ -10,7 +10,7 @@ import java.util.Map.Entry;
  * @param <K>
  * @param <V>
  */
-public class LRUCache<K, V> {
+public class LruCache<K, V> {
 
 	private final float DEFAULT_LOAD_FACTOR = 0.75f;
 	
@@ -18,7 +18,7 @@ public class LRUCache<K, V> {
 	
 	private LinkedHashMap<K, V> cache;
 	
-	public LRUCache(int cacheSize) {
+	public LruCache(int cacheSize) {
 		this.cacheSize = cacheSize;
 		// 根据cacheSize和加载因子计算hashmap的capactiy，+1确保当达到cacheSize上限时不会触发hashmap的扩容，
 		int capacity = (int) Math.ceil(cacheSize / DEFAULT_LOAD_FACTOR) + 1;
@@ -26,7 +26,7 @@ public class LRUCache<K, V> {
 			private static final long serialVersionUID = 1L;
 			@Override
 			protected boolean removeEldestEntry(Entry<K, V> eldest) {
-				return size() > LRUCache.this.cacheSize;
+				return size() > LruCache.this.cacheSize;
 			}
 		};
 	}

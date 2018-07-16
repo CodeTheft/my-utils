@@ -34,10 +34,10 @@ public class DateFormatUtil {
 	 * @return
 	 * @throws ParseException
 	 */
-	public static Date formatString2Date(String s_date, String pattern) throws ParseException {
+	public static Date formatString2Date(String dateStr, String pattern) throws ParseException {
 		pattern = StringUtil.strIsNull(pattern) ? DEFAULT_DATE_FORMAT_STRING_PATTERN : pattern;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		return simpleDateFormat.parse(s_date);
+		return simpleDateFormat.parse(dateStr);
 	}
 	
 	/**

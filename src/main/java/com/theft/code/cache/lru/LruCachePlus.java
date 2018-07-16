@@ -4,49 +4,51 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 基于ConcurrentHashMap和双向链表实现的LRU缓存
- * @author chufei
- * 2018年6月27日
+ * 
+ * @author chufei 2018年6月27日
  * @param <K>
  * @param <V>
  */
-public class LRUCachePlus<K, V> {
+public class LruCachePlus<K, V> {
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		CacheNode<K, V> node = first;
-        while (node != null) {
-            sb.append(String.format("%s:%s ", node.key, node.value));
-            node = node.next;
-        }
-        return sb.toString();
+		while (node != null) {
+			sb.append(String.format("%s:%s ", node.key, node.value));
+			node = node.next;
+		}
+		return sb.toString();
 	}
 
 	private int cacheSize;
-	
+
 	private ConcurrentHashMap<K, CacheNode<K, V>> cache;
-	
+
 	private CacheNode<K, V> first;
-	
+
 	private CacheNode<K, V> last;
-	
+
 	@SuppressWarnings("hiding")
 	class CacheNode<K, V> {
 		public CacheNode<K, V> pre;
 		public CacheNode<K, V> next;
 		public K key;
 		public V value;
+
 		public CacheNode() {
 		}
 	}
-	
-	public LRUCachePlus(int cacheSize) {
+
+	public LruCachePlus(int cacheSize) {
 		this.cacheSize = cacheSize;
 		cache = new ConcurrentHashMap<>(cacheSize);
 	}
-	
+
 	/**
 	 * 获取缓存
+	 * 
 	 * @param key
 	 * @return
 	 */
@@ -60,9 +62,10 @@ public class LRUCachePlus<K, V> {
 		moveToFirst(node);
 		return node.value;
 	}
-	
+
 	/**
 	 * 设置缓存
+	 * 
 	 * @param key
 	 * @param value
 	 * @return
@@ -84,37 +87,55 @@ public class LRUCachePlus<K, V> {
 		moveToFirst(node);
 		return cache.put(key, node);
 	}
-	
+
 	/**
 	 * 删除缓存
+	 * 
 	 * @param node
 	 */
 	public void remove(K key) {
 		CacheNode<K, V> node = cache.get(key);
 		if (node != null) {
-			if (node.pre != null) node.pre.next = node.next;
-			if (node.next != null) node.next.pre = node.pre;
-			if (node == first) first = node.next;
-			if (node == last) last = node.pre;
+			if (node.pre != null) {
+				node.pre.next = node.next;
+			}
+			if (node.next != null) {
+				node.next.pre = node.pre;
+			}
+			if (node == first) {
+				first = node.next;
+			}
+			if (node == last) {
+				last = node.pre;
+			}
 		}
 		cache.remove(key);
 	}
-	
+
 	public int size() {
 		return cache.size();
 	}
-	
+
 	/**
 	 * 将node移到链表头，表示该node最近被访问过
+	 * 
 	 * @param node
 	 */
 	private void moveToFirst(CacheNode<K, V> node) {
 		// 如果该node已经在表头
-		if (node == first) return;
-		if (node.pre != null) node.pre.next = node.next;
-		if (node.next != null) node.next.pre = node.pre;
+		if (node == first) {
+			return;
+		}
+		if (node.pre != null) {
+			node.pre.next = node.next;
+		}
+		if (node.next != null) {
+			node.next.pre = node.pre;
+		}
 		// 如果该node在表尾，表尾后移一位
-		if (node == last) last = last.pre;
+		if (node == last) {
+			last = last.pre;
+		}
 		if (first == null || last == null) {
 			first = last = node;
 			return;
@@ -125,7 +146,7 @@ public class LRUCachePlus<K, V> {
 		first = node;
 		node.pre = null;
 	}
-	
+
 	/**
 	 * 删除链表尾节点
 	 */
@@ -139,5 +160,5 @@ public class LRUCachePlus<K, V> {
 			}
 		}
 	}
-	
+
 }

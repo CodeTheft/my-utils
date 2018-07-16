@@ -62,7 +62,11 @@ public class EncryptUtil {
 		return encode(inputText + "{" + salt + "}");
 	}
 	
-	// 字符串加密
+	/**
+	 *  字符串加密
+	 * @param inputText
+	 * @return
+	 */
 	private String encode(String inputText) {
 		MessageDigest digest;
 		try {
@@ -71,19 +75,6 @@ public class EncryptUtil {
 			
 			// 2017/5/16 update
 			return new BigInteger(1, digest.digest()).toString(16);
-			
-			// 将16为字节数组转换成32为字符串
-			/* byte[] buffers = digest.digest();
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < buffers.length; i++) {
-				// 补位为16进制
-				String hs = Integer.toHexString(buffers[i] & 0xFF);
-				if (hs.length() < 2) {
-					sb.append("0");
-				}
-				sb.append(hs);
-			}
-			return sb.toString();*/
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return null;
